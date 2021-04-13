@@ -7,6 +7,7 @@ class Empleado:
         self.vacaciones=vacaciones
         self.cargo=cargo
 
+
     def getNombre(self):
         return self.nombre
 
