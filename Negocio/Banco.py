@@ -1,4 +1,4 @@
-class Blanco:
+class Banco:
     def __init__(self, sucursal, direccion):
         self.sucursal = sucursal
         self.direccion = direccion
