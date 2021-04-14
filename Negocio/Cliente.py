@@ -20,4 +20,4 @@ class Cliente:
         self.usuario=usuario
 
     def setIdentificacion(self,identificacion):
-        self.identificacion=iden tificacionpro
+        self.identificacion = identificacion

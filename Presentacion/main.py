@@ -1,4 +1,8 @@
+from Negocio.Casa_Inversionista import Casa_Inversionista
+
 varOpcionMenuPrincipal = 0
+listaCasaInversionistas = list()
+
 
 def MenuPrincipal():
     print("\n*****************************")
@@ -10,6 +14,7 @@ def MenuPrincipal():
     print("4. Gestion Empleados")
     print("5. Salir")
 
+
 def MenuGestionBanco():
     print("\n*****************************")
     print("********MENU GESTION BANCO*********")
@@ -20,6 +25,7 @@ def MenuGestionBanco():
     print("4. Informacion del Banco")
     print("5. Atras")
 
+
 def MenuGestionCliente():
     print("\n*****************************")
     print("********MENU GESTION CLIENTE*********")
@@ -28,6 +34,7 @@ def MenuGestionCliente():
     print("2. Modificar Informacion")
     print("3. Mostrar Informacion")
     print("4. Atras")
+
 
 def MenuGestionCasaInversora():
     print("\n*****************************")
@@ -40,6 +47,7 @@ def MenuGestionCasaInversora():
     print("5. Gestion Cuenta")
     print("6. Atras")
 
+
 def MenuGestionCuenta():
     print("\n********************************")
     print("******MENU GESTION CUENTA******")
@@ -48,6 +56,7 @@ def MenuGestionCuenta():
     print("2. Eliminar Cuenta")
     print("3. Informacion de la cuenta")
     print("4. Atras")
+
 
 def MenuGestionEmpleado():
     print("\n********************************")
@@ -78,6 +87,7 @@ def MenuBanco():
             print("Debe ingresar un valor numerico")
             varOpcion = 0
 
+
 # SUB MENU GESTION CLIENTE
 def MenuCliente():
     varOpcion = 0
@@ -97,13 +107,14 @@ def MenuCliente():
             print("Debe ingresar un valor numerico")
             varOpcion = 0
 
-#SUB MENU GESTION CASA INVERSIONISTA
+
+# SUB MENU GESTION CASA INVERSIONISTA
 def MenuCasaI():
     varOpcion = 0
     while (varOpcion != 6):
 
         if (varOpcion == 1):
-            print("funcion aqui")
+            print("asdasd")
 
         MenuGestionCasaInversora()
         try:
@@ -116,7 +127,32 @@ def MenuCasaI():
             print("Debe ingresar un valor numerico")
             varOpcion = 0
 
-#SUB MENU GESTION EMPLEADOS
+
+def crearCasaInversionista():
+    varNombre = input('Ingrese nombre de la casa de inversionistas: ')
+    varClave = int(input('ingrese la clave: '))
+    varPorcentaje = float(input('Ingrese el porcentaje de retorno: '))
+    varMonto = int(input('Ingrese el monto: '))
+    varPlazos = float(input('Ingrese los plazos: '))
+    varRiesgo = float(input('Ingrese el nivel de riesgo: '))
+    objCasaInversionista = Casa_Inversionista(varNombre, varClave, varPorcentaje, varMonto, varPlazos, varRiesgo)
+    listaCasaInversionistas.append(objCasaInversionista)
+
+
+def eliminarCasaInversionista():
+    varClave = int(input('ingrese la clave: '))
+
+
+def modificarCasaInversionista():
+    varClave = int(input('ingrese la clave: '))
+
+
+def mostrarInformacionCasaInversionista():
+    varClave = int(input('ingrese la clave: '))
+
+
+
+# SUB MENU GESTION EMPLEADOS
 def MenuEmpleado():
     varOpcion = 0
     while (varOpcion != 4):
@@ -136,12 +172,12 @@ def MenuEmpleado():
             varOpcion = 0
 
 
-#MENU PRINCIPAL
+# MENU PRINCIPAL
 while (varOpcionMenuPrincipal != 5):
 
-    if(varOpcionMenuPrincipal == 1):
+    if (varOpcionMenuPrincipal == 1):
         MenuBanco()
-    if(varOpcionMenuPrincipal == 2):
+    if (varOpcionMenuPrincipal == 2):
         MenuCliente()
     if (varOpcionMenuPrincipal == 3):
         MenuCasaI()
