@@ -1,5 +1,5 @@
 class Cuenta:
-    def __init__(self,id, monto_inicial,minimo,porcentaje,saldo):
+    def __init__(self, id, monto_inicial, minimo, porcentaje, saldo):
         self.id = id
         self.monto_inicial= monto_inicial
         self.minimo=minimo

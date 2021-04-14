@@ -3,10 +3,10 @@ from Negocio.Cuenta import Cuenta
 
 class Cliente:
 
-    def __init__(self,nombre,usuario,identificacion):
-        self.nombre= nombre
-        self.usuario= usuario
-        self.identificacion= identificacion
+    def __init__(self, nombre, usuario, identificacion):
+        self.nombre = nombre
+        self.usuario = usuario
+        self.identificacion = identificacion
         self.lista_cuentas = list()
 
     def getNombre(self):
@@ -21,25 +21,20 @@ class Cliente:
     def get_lista_cuentas(self):
         return self.lista_cuentas
 
-    def setnombre(self,nombre):
-        self.nombre=nombre
+    def setnombre(self, nombre):
+        self.nombre = nombre
 
     def setUsuario(self, usuario):
-        self.usuario=usuario
+        self.usuario = usuario
 
-    def setIdentificacion(self,identificacion):
-        self.identificacion=identificacion
+    def setIdentificacion(self, identificacion):
+        self.identificacion = identificacion
 
-    def añadir_cuenta(self, id, monto_inicial, minimo, porcentaje, saldo):
-        existe_cuenta = -1
-        index = 0
-        for i in self.lista_cuentas:
-            if i.get_id() == id:
-                existe_cuenta = index
-                index += 1
+    def añadir_cuenta(self, monto_inicial, minimo, porcentaje, saldo):
+        cuenta_id = self.generar_id(self)
+        self.lista_cuentas.append(cuenta_id, monto_inicial, minimo, porcentaje, saldo)
 
-        if existe_cuenta > -1:
-            print('El id ya está registrado')
-        else:
-            self.lista_cuentas.append(Cuenta(id, monto_inicial, minimo, porcentaje, saldo))
-            print('Se agregó la cuenta')
+    def generar_id(self):
+        nuevo_id = len(self.lista_cuentas) + 1
+
+        return nuevo_id
