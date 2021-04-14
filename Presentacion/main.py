@@ -1,19 +1,23 @@
 from Negocio.Banco import Banco
 from Negocio.Empleado import Empleado
 from Negocio.Casa_Inversionista import Casa_Inversionista
+from Negocio.Cliente import Cliente
 
 lista_bancos = list()
 lista_Casas_Inversionistas = list()
+lista_cliente = list()
 varOpcionMenuPrincipal = 0
 
+
 def crearBanco():
-    sucursal=input('Ingrese la sucursal del banco')
-    direccion=input('Ingrese la direccion del banco')
-    a= existSucursal(sucursal)
+    sucursal = input('Ingrese la sucursal del banco')
+    direccion = input('Ingrese la direccion del banco')
+    a = existSucursal(sucursal)
     if not a:
-        lista_bancos.append(Banco(sucursal,direccion))
+        lista_bancos.append(Banco(sucursal, direccion))
     else:
         print('ese banco ya existe ')
+
 
 def existSucursal(sucursal):
     existe = False
@@ -22,17 +26,20 @@ def existSucursal(sucursal):
             existe = True
     return existe
 
+
 def EliminarBanco():
     sucursal = input('Ingrese la sucursal del banco')
     a = existSucursal(sucursal)
     if a:
         for bancos in lista_bancos:
-            if sucursal==bancos.getSucursal():
+            if sucursal == bancos.getSucursal():
                 posicion = lista_bancos.index(bancos)
         lista_bancos.pop(posicion)
         print('banco eliminado')
     else:
         print('ese banco no  existe ')
+
+
 def EliminarEmpleado():
     sucursal = input('Ingrese sucursal')
     a = existSucursal(sucursal)
@@ -51,19 +58,21 @@ def EliminarEmpleado():
     else:
         print('el banco no existe')
 
+
 def ModificarBanco():
     sucursal = input('Ingrese la sucrusal del banco')
     a = existSucursal(sucursal)
     if a:
         for bancos in lista_bancos:
-            if sucursal==bancos.getSucursal():
+            if sucursal == bancos.getSucursal():
                 posicion = lista_bancos.index(bancos)
         sucursal = input('Ingrese nueva sucursal del banco')
-        direccion= input('ingrese  nueva direccion del banco')
+        direccion = input('ingrese  nueva direccion del banco')
         lista_bancos[posicion].setSucursal(sucursal)
         lista_bancos[posicion].setDireccion(direccion)
     else:
         print('ese banco no  existe ')
+
 
 def mostrasBanco():
     sucursal = input('Ingrese la sucrusal del banco')
@@ -76,8 +85,9 @@ def mostrasBanco():
     else:
         print('ese banco no  existe ')
 
+
 def CrearEmpleado():
-    sucursal=input('Inngrese sucursal')
+    sucursal = input('Inngrese sucursal')
     a = existSucursal(sucursal)
     if a:
         for bancos in lista_bancos:
@@ -89,7 +99,7 @@ def CrearEmpleado():
         aniostrabajo = input('ingrese  los años de trabajo')
         vacaciones = input('ingrese  las vac-aciones')
         cargo = input('ingrese el cargo')
-        empleado = Empleado(sucursal,nombre,id,sueldo,aniostrabajo,vacaciones,cargo)
+        empleado = Empleado(sucursal, nombre, id, sueldo, aniostrabajo, vacaciones, cargo)
         lista_bancos[posicion].agregarEmpleado(empleado)
         print('Empleado agregado con exito')
 
@@ -98,17 +108,17 @@ def CrearEmpleado():
 
 
 def ModificarEmpleado():
-    sucursal=input('Ingrese sucursal')
+    sucursal = input('Ingrese sucursal')
     a = existSucursal(sucursal)
     if a:
         for bancos in lista_bancos:
             if sucursal == bancos.getSucursal():
                 posicion = lista_bancos.index(bancos)
-        nombre=input('ingrese el nombre del empelado a modificar')
+        nombre = input('ingrese el nombre del empelado a modificar')
 
         for empleados in lista_bancos[posicion].getEmpleados():
-            if nombre== empleados.getNombre():
-                posicion2=lista_bancos[posicion].getEmpleados().index(empleados)
+            if nombre == empleados.getNombre():
+                posicion2 = lista_bancos[posicion].getEmpleados().index(empleados)
                 nombre = input('Ingrese el nombre ')
                 id = input('ingrese el id ')
                 sueldo = input('ingrese el sueldo')
@@ -123,9 +133,10 @@ def ModificarEmpleado():
                 lista_bancos[posicion].getEmpleados()[posicion2].setCargo(cargo)
                 print('Empleado modificado con exito')
         else:
-                print('el empleado no existe')
+            print('el empleado no existe')
     else:
         print('ese banco no  existe ')
+
 
 def MenuPrincipal():
     print("\n*****************************")
@@ -155,9 +166,10 @@ def MenuGestionCliente():
     print("********MENU GESTION CLIENTE*********")
     print("*****************************")
     print("1. Crear Cliente")
-    print("2. Modificar Informacion")
-    print("3. Mostrar Informacion")
-    print("4. Atras")
+    print("2. Añadir cuenta a cliente")
+    print("3. Eliminar cuenta a cliente")
+    print("4. Mostrar Informacion cuenta")
+    print("5. Atras")
 
 
 def MenuGestionCasaInversora():
@@ -198,13 +210,12 @@ def MenuBanco():
 
         if (varOpcion == 1):
             crearBanco()
-        if (varOpcion==2):
+        if (varOpcion == 2):
             EliminarBanco()
-        if (varOpcion==3):
+        if (varOpcion == 3):
             ModificarBanco()
-        if ( varOpcion==4):
+        if (varOpcion == 4):
             mostrasBanco()
-
 
         MenuGestionBanco()
         try:
@@ -221,13 +232,18 @@ def MenuBanco():
 # SUB MENU GESTION CLIENTE
 def MenuCliente():
     varOpcion = 0
-    while (varOpcion != 4):
+    while varOpcion != 5:
 
-        if (varOpcion == 1):
-            print("funcion")
-            crearCasa()
+        if varOpcion == 1:
+            crearCliente()
+        if varOpcion == 2:
+            añadirCuentaCliente()
+        if varOpcion == 3:
+            eliminarCuenta()
+        if varOpcion == 4:
+            mostrarCuenta()
 
-        MenuGestionBanco()
+        MenuGestionCliente()
         try:
             varOpcion = int(input('Ingrese su opcion: '))
             if (varOpcion < 0 or varOpcion > 4):
@@ -394,7 +410,8 @@ def crearCuenta():
                 lista_Casas_Inversionistas[varPosicion].agregarCuenta(varMontoInicial, varMinimo, varPorcentaje,
                                                                       varSaldo)
             else:
-                print("No es posible agregar una cuenta debido a que la clave ingresada no corresponde a ninguna casa de inversiones")
+                print(
+                    "No es posible agregar una cuenta debido a que la clave ingresada no corresponde a ninguna casa de inversiones")
     else:
         print("No es posible crear una cuenta debido a que no existe una casa de inversiones con la clave recibida")
 
@@ -448,18 +465,18 @@ def mostrarCuentas():
 # SUB MENU GESTION EMPLEADOS
 def MenuEmpleado():
     varOpcion = 0
-    while (varOpcion != 4):
+    while varOpcion != 4:
 
-        if (varOpcion == 1):
+        if varOpcion == 1:
             CrearEmpleado()
-        if (varOpcion == 2):
+        if varOpcion == 2:
             ModificarEmpleado()
-        if (varOpcion == 3):
+        if varOpcion == 3:
             EliminarEmpleado()
         MenuGestionEmpleado()
         try:
             varOpcion = int(input('Ingrese su opcion: '))
-            if (varOpcion < 0 or varOpcion > 4):
+            if varOpcion < 0 or varOpcion > 4:
                 print("\nDebe ingresar una opcion valida")
                 varOpcion = 0
             var_error = int(varOpcion)
@@ -491,3 +508,47 @@ while (varOpcionMenuPrincipal != 6):
     except:
         print("Debe ingresar un valor numerico")
         varOpcionMenuPrincipal = 0
+
+
+def crearCliente():
+    nombre = input('Ingrese nombre del cliente')
+    usuario = input('Ingrese nombre de usuario')
+    identificacion = input('Ingrese su identificacion')
+
+    for cliente in lista_cliente:
+        if usuario == cliente.getUsuario():
+            print('El usuario ya existe, intente con otro.')
+            return
+
+    lista_cliente.append(Cliente(nombre, usuario, identificacion))
+
+
+def añadirCuentaCliente():
+    usuario = input('Ingrese usuario para crear un cuenta')
+
+    for cliente in lista_cliente:
+        if usuario == cliente.getUsuario():
+            monto_inicial = int(input('Ingrese monto inicial de la cuenta:'))
+            minimo = int(input('Ingrese minimo:'))
+            porcentaje = int(input('Porcentaje:'))
+            saldo = int(input('Saldo de la cuenta:'))
+
+            cliente.añadir_cuenta(monto_inicial, minimo, porcentaje, saldo)
+            return
+
+
+def eliminarCuenta():
+    id_cuenta = int(input('Ingrese el id de la cuenta'))
+
+    for cliente in lista_cliente:
+        for cuenta in len(cliente.lista_cuentas):
+            if id_cuenta == cuenta.id:
+                cliente.eliminar_cuenta(id_cuenta)
+
+
+def mostrarCuenta():
+    usuario = input('Ingrese usuario para crear un cuenta')
+
+    for cliente in lista_cliente:
+        if usuario == cliente.getUsuario():
+            cliente.mostrar_cuenta()
