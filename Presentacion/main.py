@@ -259,7 +259,12 @@ def crearCuenta():
                 varAux = False
 
             if (varAux == True):
-                lista_Casas_Inversionistas[varPosicion].agregarCuenta()
+                varMontoInicial = int(input('Ingresa el valor del monto inicial: '))
+                varMinimo = int(input('Ingresa el valor del minimo: '))
+                varPorcentaje = float(input('Ingresa el porcentaje: '))
+                varSaldo = int(input('Ingresa el saldo: '))
+
+                lista_Casas_Inversionistas[varPosicion].agregarCuenta(varMontoInicial,varMinimo,varPorcentaje,varSaldo)
             else:
                 print("No es posible agregar una cuenta debido a que la clave ingresada no corresponde a ninguna casa de inversiones")
     else:
@@ -277,10 +282,13 @@ def eliminarCuenta():
                 varAux = False
 
             if (varAux == True):
-                lista_Casas_Inversionistas[varPosicion].mostrarDatosCuenta()
-                varPosicionCuenta = int(input('Ingresa la posicion: '))
-                lista_Casas_Inversionistas[varPosicion].eliminarCuenta(varPosicionCuenta)
-                print("cuenta eliminada con exito")
+                varLongitudLista = lista_Casas_Inversionistas[varPosicion].mostrarDatosCuenta()
+                if(varLongitudLista != 0):
+                    varPosicionCuenta = int(input('Ingresa la posicion: '))
+                    lista_Casas_Inversionistas[varPosicion].eliminarCuenta(varPosicionCuenta)
+                    print("cuenta eliminada con exito")
+                else:
+                    print("La casa de inversionistas no tiene ninguna cuenta")
             else:
                 print("No es posible eliminar la cuenta debido a que no se encontro la casa de inversionistas")
     else:
@@ -298,7 +306,9 @@ def mostrarCuentas():
                 varAux = False
 
             if (varAux == True):
-                lista_Casas_Inversionistas[varPosicion].mostrarDatosCuenta()
+                varLongitudLista = lista_Casas_Inversionistas[varPosicion].mostrarDatosCuenta()
+                if(varLongitudLista == 0):
+                    print("La casa de inversionistas no tiene ninguna cuenta")
             else:
                 print("No existen cuentas en la casa de inversionistas ingresada")
     else:

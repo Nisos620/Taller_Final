@@ -52,18 +52,14 @@ class Casa_Inversionista:
         print("Nombre: ", self.nombre, ", Clave: ", self.clave, ", Porcentaje de retorno: "
               , self.porcentajes, ", Monto: ", self.montos, ", Plazo: ", self.plazos, ", Nivel de riesgo: ", self.nivel)
 
-    def agregarCuenta(self):
-        varMontoInicial = int(input('Ingresa el valor del monto inicial: '))
-        varMinimo = int(input('Ingresa el valor del minimo: '))
-        varPorcentaje = float(input('Ingresa el porcentaje: '))
-        varSaldo = int(input('Ingresa el saldo: '))
-
-        self.lista_cuentas.append(Cuenta(varMontoInicial, varMinimo, varPorcentaje, varSaldo))
+    def agregarCuenta(self, parMontoInicial, parMinimo, parPorcentaje, parSaldo):
+        self.lista_cuentas.append(Cuenta(parMontoInicial, parMinimo, parPorcentaje, parSaldo))
 
     def eliminarCuenta(self, parPosicion):
         self.lista_cuentas.pop(parPosicion)
 
     def mostrarDatosCuenta(self):
         for i in range(len(self.lista_cuentas)):
-            print(i)
+            print("Numero de cuenta: ",i)
             print(self.lista_cuentas[i].mostrarDatos())
+        return len(self.lista_cuentas)
