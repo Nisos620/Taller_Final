@@ -1,4 +1,5 @@
 from Negocio.Banco import Banco
+from Negocio.Empleado import Empleado
 
 lista_bancos=list()
 varOpcionMenuPrincipal = 0
@@ -55,6 +56,60 @@ def mostrasBanco():
         lista_bancos[posicion].mostrasDatos()
     else:
         print('ese banco no  existe ')
+
+def CrearEmpleado():
+    sucursal=input('Inngrese sucursal')
+    a = existSucursal(sucursal)
+    if a:
+        for bancos in lista_bancos:
+            if sucursal == bancos.getSucursal():
+                posicion = lista_bancos.index(bancos)
+        nombre = input('Ingrese el nombre ')
+        id = input('ingrese el id ')
+        sueldo = input('ingrese el sueldo')
+        aniostrabajo = input('ingrese  los años de trabajo')
+        vacaciones = input('ingrese  las vac-aciones')
+        cargo = input('ingrese el cargo')
+        empleado = Empleado(sucursal,nombre,id,sueldo,aniostrabajo,vacaciones,cargo)
+        lista_bancos[posicion].agregarEmpleado(empleado)
+        print('Empleado agregado con exito')
+
+    else:
+        print('ese banco no  existe ')
+
+
+def ModificarEmpleado():
+    sucursal=input('Ingrese sucursal')
+    a = existSucursal(sucursal)
+    if a:
+        for bancos in lista_bancos:
+            if sucursal == bancos.getSucursal():
+                posicion = lista_bancos.index(bancos)
+        nombre=input('ingrese el nombre del empelado a modificar')
+
+        for empleados in lista_bancos[posicion].getEmpleados():
+            if nombre== empleados.getNombre():
+                posicion2=lista_bancos[posicion].getEmpleados().index(empleados)
+            else:
+                print('el empleado no existe')
+
+        nombre = input('Ingrese el nombre ')
+        id = input('ingrese el id ')
+        sueldo = input('ingrese el sueldo')
+        aniostrabajo = input('ingrese  los años de trabajo')
+        vacaciones = input('ingrese  las vac-aciones')
+        cargo = input('ingrese el cargo')
+        lista_bancos[posicion].getEmpleados()[posicion2].setNombre(nombre)
+        lista_bancos[posicion].getEmpleados()[posicion2].setId(id)
+        lista_bancos[posicion].getEmpleados()[posicion2].setSueldo(sueldo)
+        lista_bancos[posicion].getEmpleados()[posicion2].setaniostrabajo(aniostrabajo)
+        print('Empleado modificado con exito')
+    else:
+        print('ese banco no  existe ')
+
+
+
+
 
 def MenuPrincipal():
     print("\n*****************************")
@@ -185,9 +240,11 @@ def MenuEmpleado():
     while (varOpcion != 4):
 
         if (varOpcion == 1):
-            print("funcion aqui")
+            CrearEmpleado()
+        if (varOpcion == 2):
+            ModificarEmpleado()
 
-        MenuGestionBanco()
+        MenuGestionEmpleado()
         try:
             varOpcion = int(input('Ingrese su opcion: '))
             if (varOpcion < 0 or varOpcion > 4):
