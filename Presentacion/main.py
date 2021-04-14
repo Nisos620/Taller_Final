@@ -33,6 +33,23 @@ def EliminarBanco():
         print('banco eliminado')
     else:
         print('ese banco no  existe ')
+def EliminarEmpleado():
+    sucursal = input('Ingrese sucursal')
+    a = existSucursal(sucursal)
+    if a:
+        for bancos in lista_bancos:
+            if sucursal == bancos.getSucursal():
+                posicion = lista_bancos.index(bancos)
+        nombre = input('ingrese el nombre del empelado a modificar')
+
+        for empleados in lista_bancos[posicion].getEmpleados():
+            if nombre == empleados.getNombre():
+                posicion2 = lista_bancos[posicion].getEmpleados().index(empleados)
+                lista_bancos[posicion].getEmpleados().pop(posicion2)
+            else:
+                print('el empleado no existe ')
+    else:
+        print('el banco no existe')
 
 def ModificarBanco():
     sucursal = input('Ingrese la sucrusal del banco')
@@ -92,20 +109,21 @@ def ModificarEmpleado():
         for empleados in lista_bancos[posicion].getEmpleados():
             if nombre== empleados.getNombre():
                 posicion2=lista_bancos[posicion].getEmpleados().index(empleados)
-            else:
+                nombre = input('Ingrese el nombre ')
+                id = input('ingrese el id ')
+                sueldo = input('ingrese el sueldo')
+                aniostrabajo = input('ingrese  los años de trabajo')
+                vacaciones = input('ingrese  las vac-aciones')
+                cargo = input('ingrese el cargo')
+                lista_bancos[posicion].getEmpleados()[posicion2].setNombre(nombre)
+                lista_bancos[posicion].getEmpleados()[posicion2].setId(id)
+                lista_bancos[posicion].getEmpleados()[posicion2].setSueldo(sueldo)
+                lista_bancos[posicion].getEmpleados()[posicion2].setaniostrabajo(aniostrabajo)
+                lista_bancos[posicion].getEmpleados()[posicion2].setVacaciones(vacaciones)
+                lista_bancos[posicion].getEmpleados()[posicion2].setCargo(cargo)
+                print('Empleado modificado con exito')
+        else:
                 print('el empleado no existe')
-
-        nombre = input('Ingrese el nombre ')
-        id = input('ingrese el id ')
-        sueldo = input('ingrese el sueldo')
-        aniostrabajo = input('ingrese  los años de trabajo')
-        vacaciones = input('ingrese  las vac-aciones')
-        cargo = input('ingrese el cargo')
-        lista_bancos[posicion].getEmpleados()[posicion2].setNombre(nombre)
-        lista_bancos[posicion].getEmpleados()[posicion2].setId(id)
-        lista_bancos[posicion].getEmpleados()[posicion2].setSueldo(sueldo)
-        lista_bancos[posicion].getEmpleados()[posicion2].setaniostrabajo(aniostrabajo)
-        print('Empleado modificado con exito')
     else:
         print('ese banco no  existe ')
 
