@@ -16,3 +16,6 @@ class Banco:
     def setDireccion(self,direccion):
         self.direccion=direccion
 
+    def mostrasDatos(self):
+        print('Sucursal: ',self.sucursal,' direccion: ',self.direccion, 'cantidad de empleados')
+
