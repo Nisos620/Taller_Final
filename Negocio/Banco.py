@@ -9,6 +9,8 @@ class Banco:
 
     def getDireccion(self):
         return self.direccion
+    def getEmpleados(self):
+        return self.lista_empleados
 
     def setSucursal(self,sucursal):
         self.sucursal=sucursal
@@ -18,4 +20,16 @@ class Banco:
 
     def mostrasDatos(self):
         print('Sucursal: ',self.sucursal,' direccion: ',self.direccion, 'cantidad de empleados')
+
+    def agregarEmpleado(self, empleado):
+        self.lista_empleados.append(empleado)
+
+    def mostrarEmpleados(self):
+        for emplados in self.lista_empleados():
+            emplados.mostrasDatos()
+
+
+
+
+
 

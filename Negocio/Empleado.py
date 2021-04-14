@@ -1,5 +1,6 @@
 class Empleado:
-    def __init__(self,nombre,id,sueldo,aniostra,vacaciones,cargo):
+    def __init__(self,sucursalbanco,nombre,id,sueldo,aniostra,vacaciones,cargo):
+        self.sucursalbanco=sucursalbanco
         self.nombre=nombre
         self.id=id
         self.sueldo=sueldo
