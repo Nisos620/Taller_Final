@@ -25,3 +25,6 @@ class Cuenta:
 
     def setPorcentaje(self,porcentaje):
         self.porcentaje=porcentaje
+
+    def mostrarDatos(self):
+        print("Monto inicial: ",self.monto_inicial,", Minimo: ",self.minimo,", Porcentaje: ", self.porcentaje, ", Saldo: ",self.saldo )

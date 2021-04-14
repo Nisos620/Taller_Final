@@ -1,5 +1,6 @@
 from Negocio.Cuenta import Cuenta
 
+
 class Casa_Inversionista:
 
     def __init__(self, nombre, clave, porcentajes_retorno, montos, plazos, nivel_riesgo):
@@ -10,7 +11,6 @@ class Casa_Inversionista:
         self.plazos = plazos
         self.nivel = nivel_riesgo
         self.lista_cuentas = list()
-
 
     def getNombre(self):
         return self.nombre
@@ -48,8 +48,22 @@ class Casa_Inversionista:
     def setNivel(self, plazo):
         self.plazos = plazo
 
+    def mostrarDatos(self):
+        print("Nombre: ", self.nombre, ", Clave: ", self.clave, ", Porcentaje de retorno: "
+              , self.porcentajes, ", Monto: ", self.montos, ", Plazo: ", self.plazos, ", Nivel de riesgo: ", self.nivel)
 
+    def agregarCuenta(self):
+        varMontoInicial = int(input('Ingresa el valor del monto inicial: '))
+        varMinimo = int(input('Ingresa el valor del minimo: '))
+        varPorcentaje = float(input('Ingresa el porcentaje: '))
+        varSaldo = int(input('Ingresa el saldo: '))
 
+        self.lista_cuentas.append(Cuenta(varMontoInicial, varMinimo, varPorcentaje, varSaldo))
 
+    def eliminarCuenta(self, parPosicion):
+        self.lista_cuentas.pop(parPosicion)
 
-
+    def mostrarDatosCuenta(self):
+        for i in range(len(self.lista_cuentas)):
+            print(i)
+            print(self.lista_cuentas[i].mostrarDatos())
