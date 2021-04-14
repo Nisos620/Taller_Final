@@ -1,8 +1,12 @@
 from Negocio.Banco import Banco
 from Negocio.Casa_Inversionista import Casa_Inversionista
+from Negocio.Cliente import Cliente
+
 lista_bancos = list()
 lista_Casas_Inversionistas = list()
+lista_cliente = list()
 varOpcionMenuPrincipal = 0
+
 def crearBanco():
     sucursal=input('Ingrese la sucursal del banco')
     direccion=input('Ingrese la direccion del banco')
