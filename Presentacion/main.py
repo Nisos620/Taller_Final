@@ -1,8 +1,11 @@
 from Negocio.Banco import Banco
+from Negocio.Empleado import Empleado
 from Negocio.Casa_Inversionista import Casa_Inversionista
+
 lista_bancos = list()
 lista_Casas_Inversionistas = list()
 varOpcionMenuPrincipal = 0
+
 def crearBanco():
     sucursal=input('Ingrese la sucursal del banco')
     direccion=input('Ingrese la direccion del banco')
@@ -30,6 +33,23 @@ def EliminarBanco():
         print('banco eliminado')
     else:
         print('ese banco no  existe ')
+def EliminarEmpleado():
+    sucursal = input('Ingrese sucursal')
+    a = existSucursal(sucursal)
+    if a:
+        for bancos in lista_bancos:
+            if sucursal == bancos.getSucursal():
+                posicion = lista_bancos.index(bancos)
+        nombre = input('ingrese el nombre del empelado a modificar')
+
+        for empleados in lista_bancos[posicion].getEmpleados():
+            if nombre == empleados.getNombre():
+                posicion2 = lista_bancos[posicion].getEmpleados().index(empleados)
+                lista_bancos[posicion].getEmpleados().pop(posicion2)
+            else:
+                print('el empleado no existe ')
+    else:
+        print('el banco no existe')
 
 def ModificarBanco():
     sucursal = input('Ingrese la sucrusal del banco')
@@ -56,6 +76,56 @@ def mostrasBanco():
     else:
         print('ese banco no  existe ')
 
+def CrearEmpleado():
+    sucursal=input('Inngrese sucursal')
+    a = existSucursal(sucursal)
+    if a:
+        for bancos in lista_bancos:
+            if sucursal == bancos.getSucursal():
+                posicion = lista_bancos.index(bancos)
+        nombre = input('Ingrese el nombre ')
+        id = input('ingrese el id ')
+        sueldo = input('ingrese el sueldo')
+        aniostrabajo = input('ingrese  los años de trabajo')
+        vacaciones = input('ingrese  las vac-aciones')
+        cargo = input('ingrese el cargo')
+        empleado = Empleado(sucursal,nombre,id,sueldo,aniostrabajo,vacaciones,cargo)
+        lista_bancos[posicion].agregarEmpleado(empleado)
+        print('Empleado agregado con exito')
+
+    else:
+        print('ese banco no  existe ')
+
+
+def ModificarEmpleado():
+    sucursal=input('Ingrese sucursal')
+    a = existSucursal(sucursal)
+    if a:
+        for bancos in lista_bancos:
+            if sucursal == bancos.getSucursal():
+                posicion = lista_bancos.index(bancos)
+        nombre=input('ingrese el nombre del empelado a modificar')
+
+        for empleados in lista_bancos[posicion].getEmpleados():
+            if nombre== empleados.getNombre():
+                posicion2=lista_bancos[posicion].getEmpleados().index(empleados)
+                nombre = input('Ingrese el nombre ')
+                id = input('ingrese el id ')
+                sueldo = input('ingrese el sueldo')
+                aniostrabajo = input('ingrese  los años de trabajo')
+                vacaciones = input('ingrese  las vac-aciones')
+                cargo = input('ingrese el cargo')
+                lista_bancos[posicion].getEmpleados()[posicion2].setNombre(nombre)
+                lista_bancos[posicion].getEmpleados()[posicion2].setId(id)
+                lista_bancos[posicion].getEmpleados()[posicion2].setSueldo(sueldo)
+                lista_bancos[posicion].getEmpleados()[posicion2].setaniostrabajo(aniostrabajo)
+                lista_bancos[posicion].getEmpleados()[posicion2].setVacaciones(vacaciones)
+                lista_bancos[posicion].getEmpleados()[posicion2].setCargo(cargo)
+                print('Empleado modificado con exito')
+        else:
+                print('el empleado no existe')
+    else:
+        print('ese banco no  existe ')
 
 def MenuPrincipal():
     print("\n*****************************")
@@ -324,8 +394,7 @@ def crearCuenta():
                 lista_Casas_Inversionistas[varPosicion].agregarCuenta(varMontoInicial, varMinimo, varPorcentaje,
                                                                       varSaldo)
             else:
-                print(
-                    "No es posible agregar una cuenta debido a que la clave ingresada no corresponde a ninguna casa de inversiones")
+                print("No es posible agregar una cuenta debido a que la clave ingresada no corresponde a ninguna casa de inversiones")
     else:
         print("No es posible crear una cuenta debido a que no existe una casa de inversiones con la clave recibida")
 
@@ -382,9 +451,12 @@ def MenuEmpleado():
     while (varOpcion != 4):
 
         if (varOpcion == 1):
-            print("funcion aqui")
-
-        MenuGestionBanco()
+            CrearEmpleado()
+        if (varOpcion == 2):
+            ModificarEmpleado()
+        if (varOpcion == 3):
+            EliminarEmpleado()
+        MenuGestionEmpleado()
         try:
             varOpcion = int(input('Ingrese su opcion: '))
             if (varOpcion < 0 or varOpcion > 4):
