@@ -1,11 +1,60 @@
 from Negocio.Banco import Banco
 from Negocio.Casa_Inversionista import Casa_Inversionista
-
 lista_bancos = list()
 lista_Casas_Inversionistas = list()
-
 varOpcionMenuPrincipal = 0
-listaCasaInversionistas = list()
+def crearBanco():
+    sucursal=input('Ingrese la sucursal del banco')
+    direccion=input('Ingrese la direccion del banco')
+    a= existSucursal(sucursal)
+    if not a:
+        lista_bancos.append(Banco(sucursal,direccion))
+    else:
+        print('ese banco ya existe ')
+
+def existSucursal(sucursal):
+    existe = False
+    for bancos in lista_bancos:
+        if (sucursal == bancos.getSucursal()):
+            existe = True
+    return existe
+
+def EliminarBanco():
+    sucursal = input('Ingrese la sucursal del banco')
+    a = existSucursal(sucursal)
+    if a:
+        for bancos in lista_bancos:
+            if sucursal==bancos.getSucursal():
+                posicion = lista_bancos.index(bancos)
+        lista_bancos.pop(posicion)
+        print('banco eliminado')
+    else:
+        print('ese banco no  existe ')
+
+def ModificarBanco():
+    sucursal = input('Ingrese la sucrusal del banco')
+    a = existSucursal(sucursal)
+    if a:
+        for bancos in lista_bancos:
+            if sucursal==bancos.getSucursal():
+                posicion = lista_bancos.index(bancos)
+        sucursal = input('Ingrese nueva sucursal del banco')
+        direccion= input('ingrese  nueva direccion del banco')
+        lista_bancos[posicion].setSucursal(sucursal)
+        lista_bancos[posicion].setDireccion(direccion)
+    else:
+        print('ese banco no  existe ')
+
+def mostrasBanco():
+    sucursal = input('Ingrese la sucrusal del banco')
+    a = existSucursal(sucursal)
+    if a:
+        for bancos in lista_bancos:
+            if sucursal == bancos.getSucursal():
+                posicion = lista_bancos.index(bancos)
+        lista_bancos[posicion].mostrasDatos()
+    else:
+        print('ese banco no  existe ')
 
 
 def MenuPrincipal():
@@ -247,6 +296,7 @@ def MenuCuenta():
             print("Debe ingresar un valor numerico")
             varOpcion = 0
 
+
 def crearCuenta():
     varClave = int(input('Ingresa la clave de la casa de inversionistas: '))
     aux = existeCasaInversionista(varClave)
@@ -264,11 +314,14 @@ def crearCuenta():
                 varPorcentaje = float(input('Ingresa el porcentaje: '))
                 varSaldo = int(input('Ingresa el saldo: '))
 
-                lista_Casas_Inversionistas[varPosicion].agregarCuenta(varMontoInicial,varMinimo,varPorcentaje,varSaldo)
+                lista_Casas_Inversionistas[varPosicion].agregarCuenta(varMontoInicial, varMinimo, varPorcentaje,
+                                                                      varSaldo)
             else:
-                print("No es posible agregar una cuenta debido a que la clave ingresada no corresponde a ninguna casa de inversiones")
+                print(
+                    "No es posible agregar una cuenta debido a que la clave ingresada no corresponde a ninguna casa de inversiones")
     else:
         print("No es posible crear una cuenta debido a que no existe una casa de inversiones con la clave recibida")
+
 
 def eliminarCuenta():
     varClave = int(input('Ingresa la clave de la casa de inversionistas: '))
@@ -283,7 +336,7 @@ def eliminarCuenta():
 
             if (varAux == True):
                 varLongitudLista = lista_Casas_Inversionistas[varPosicion].mostrarDatosCuenta()
-                if(varLongitudLista != 0):
+                if (varLongitudLista != 0):
                     varPosicionCuenta = int(input('Ingresa la posicion: '))
                     lista_Casas_Inversionistas[varPosicion].eliminarCuenta(varPosicionCuenta)
                     print("cuenta eliminada con exito")
@@ -293,6 +346,7 @@ def eliminarCuenta():
                 print("No es posible eliminar la cuenta debido a que no se encontro la casa de inversionistas")
     else:
         print("No se encontro la casa de inversionistas")
+
 
 def mostrarCuentas():
     varClave = int(input('Ingresa la clave de la casa de inversionistas: '))
@@ -307,12 +361,14 @@ def mostrarCuentas():
 
             if (varAux == True):
                 varLongitudLista = lista_Casas_Inversionistas[varPosicion].mostrarDatosCuenta()
-                if(varLongitudLista == 0):
+                if (varLongitudLista == 0):
                     print("La casa de inversionistas no tiene ninguna cuenta")
             else:
                 print("No existen cuentas en la casa de inversionistas ingresada")
     else:
         print("No se encontro la casa de inversionistas")
+
+
 # SUB MENU GESTION EMPLEADOS
 def MenuEmpleado():
     varOpcion = 0
@@ -344,7 +400,7 @@ while (varOpcionMenuPrincipal != 6):
         MenuCasaI()
     if (varOpcionMenuPrincipal == 4):
         MenuEmpleado()
-    if(varOpcionMenuPrincipal == 5):
+    if (varOpcionMenuPrincipal == 5):
         MenuCuenta()
     MenuPrincipal()
     try:
