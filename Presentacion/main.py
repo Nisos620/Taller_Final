@@ -1,4 +1,60 @@
+from Negocio.Banco import Banco
+
+lista_bancos=list()
 varOpcionMenuPrincipal = 0
+
+def crearBanco():
+    sucursal=input('Ingrese la sucursal del banco')
+    direccion=input('Ingrese la direccion del banco')
+    a= existSucursal(sucursal)
+    if not a:
+        lista_bancos.append(Banco(sucursal,direccion))
+    else:
+        print('ese banco ya existe ')
+
+def existSucursal(sucursal):
+    existe = False
+    for bancos in lista_bancos:
+        if (sucursal == bancos.getSucursal()):
+            existe = True
+    return existe
+
+def EliminarBanco():
+    sucursal = input('Ingrese la sucursal del banco')
+    a = existSucursal(sucursal)
+    if a:
+        for bancos in lista_bancos:
+            if sucursal==bancos.getSucursal():
+                posicion = lista_bancos.index(bancos)
+        lista_bancos.pop(posicion)
+        print('banco eliminado')
+    else:
+        print('ese banco no  existe ')
+
+def ModificarBanco():
+    sucursal = input('Ingrese la sucrusal del banco')
+    a = existSucursal(sucursal)
+    if a:
+        for bancos in lista_bancos:
+            if sucursal==bancos.getSucursal():
+                posicion = lista_bancos.index(bancos)
+        sucursal = input('Ingrese nueva sucursal del banco')
+        direccion= input('ingrese  nueva direccion del banco')
+        lista_bancos[posicion].setSucursal(sucursal)
+        lista_bancos[posicion].setDireccion(direccion)
+    else:
+        print('ese banco no  existe ')
+
+def mostrasBanco():
+    sucursal = input('Ingrese la sucrusal del banco')
+    a = existSucursal(sucursal)
+    if a:
+        for bancos in lista_bancos:
+            if sucursal == bancos.getSucursal():
+                posicion = lista_bancos.index(bancos)
+        lista_bancos[posicion].mostrasDatos()
+    else:
+        print('ese banco no  existe ')
 
 def MenuPrincipal():
     print("\n*****************************")
@@ -65,7 +121,14 @@ def MenuBanco():
     while (varOpcion != 5):
 
         if (varOpcion == 1):
-            print("funcion aqui")
+            crearBanco()
+        if (varOpcion==2):
+            EliminarBanco()
+        if (varOpcion==3):
+            ModificarBanco()
+        if ( varOpcion==4):
+            mostrasBanco()
+
 
         MenuGestionBanco()
         try:
@@ -158,3 +221,5 @@ while (varOpcionMenuPrincipal != 5):
     except:
         print("Debe ingresar un valor numerico")
         varOpcionMenuPrincipal = 0
+
+
