@@ -485,31 +485,6 @@ def MenuEmpleado():
             varOpcion = 0
 
 
-# MENU PRINCIPAL
-while (varOpcionMenuPrincipal != 6):
-
-    if (varOpcionMenuPrincipal == 1):
-        MenuBanco()
-    if (varOpcionMenuPrincipal == 2):
-        MenuCliente()
-    if (varOpcionMenuPrincipal == 3):
-        MenuCasaI()
-    if (varOpcionMenuPrincipal == 4):
-        MenuEmpleado()
-    if (varOpcionMenuPrincipal == 5):
-        MenuCuenta()
-    MenuPrincipal()
-    try:
-        varOpcionMenuPrincipal = int(input('Ingrese su opcion: '))
-        if (varOpcionMenuPrincipal < 0 or varOpcionMenuPrincipal > 6):
-            print("\nDebe ingresar una opcion valida")
-            varOpcionMenuPrincipal = 0
-        var_error = int(varOpcionMenuPrincipal)
-    except:
-        print("Debe ingresar un valor numerico")
-        varOpcionMenuPrincipal = 0
-
-
 def crearCliente():
     nombre = input('Ingrese nombre del cliente')
     usuario = input('Ingrese nombre de usuario')
@@ -538,17 +513,45 @@ def añadirCuentaCliente():
 
 
 def eliminarCuenta():
+    usuario = input('Ingrese usuario para eliminar una cuenta')
     id_cuenta = int(input('Ingrese el id de la cuenta'))
 
     for cliente in lista_cliente:
-        for cuenta in len(cliente.lista_cuentas):
-            if id_cuenta == cuenta.id:
-                cliente.eliminar_cuenta(id_cuenta)
+        if cliente.getUsuario() == usuario:
+            for i in cliente.lista_cuentas:
+                if i == id_cuenta:
+                    cliente.eliminar_cuenta(id_cuenta)
 
 
 def mostrarCuenta():
-    usuario = input('Ingrese usuario para crear un cuenta')
+    usuario = input('Ingrese usuario para ver cuenta')
 
     for cliente in lista_cliente:
         if usuario == cliente.getUsuario():
             cliente.mostrar_cuenta()
+
+
+# MENU PRINCIPAL
+while (varOpcionMenuPrincipal != 6):
+
+    if (varOpcionMenuPrincipal == 1):
+        MenuBanco()
+    if (varOpcionMenuPrincipal == 2):
+        MenuCliente()
+    if (varOpcionMenuPrincipal == 3):
+        MenuCasaI()
+    if (varOpcionMenuPrincipal == 4):
+        MenuEmpleado()
+    if (varOpcionMenuPrincipal == 5):
+        MenuCuenta()
+    MenuPrincipal()
+    try:
+        varOpcionMenuPrincipal = int(input('Ingrese su opcion: '))
+        if (varOpcionMenuPrincipal < 0 or varOpcionMenuPrincipal > 6):
+            print("\nDebe ingresar una opcion valida")
+            varOpcionMenuPrincipal = 0
+        var_error = int(varOpcionMenuPrincipal)
+    except:
+        print("Debe ingresar un valor numerico")
+        varOpcionMenuPrincipal = 0
+
