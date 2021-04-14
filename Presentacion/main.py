@@ -394,8 +394,7 @@ def crearCuenta():
                 lista_Casas_Inversionistas[varPosicion].agregarCuenta(varMontoInicial, varMinimo, varPorcentaje,
                                                                       varSaldo)
             else:
-                print(
-                    "No es posible agregar una cuenta debido a que la clave ingresada no corresponde a ninguna casa de inversiones")
+                print("No es posible agregar una cuenta debido a que la clave ingresada no corresponde a ninguna casa de inversiones")
     else:
         print("No es posible crear una cuenta debido a que no existe una casa de inversiones con la clave recibida")
 
@@ -455,7 +454,8 @@ def MenuEmpleado():
             CrearEmpleado()
         if (varOpcion == 2):
             ModificarEmpleado()
-
+        if (varOpcion == 3):
+            EliminarEmpleado()
         MenuGestionEmpleado()
         try:
             varOpcion = int(input('Ingrese su opcion: '))
