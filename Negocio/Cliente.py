@@ -1,6 +1,3 @@
-from Negocio.Cuenta import Cuenta
-
-
 class Cliente:
 
     def __init__(self, nombre, usuario, identificacion):
@@ -34,7 +31,20 @@ class Cliente:
         cuenta_id = self.generar_id(self)
         self.lista_cuentas.append(cuenta_id, monto_inicial, minimo, porcentaje, saldo)
 
+    def eliminar_cuenta(self, id_cuenta):
+        self.lista_cuentas.pop(id_cuenta - 1)
+
     def generar_id(self):
         nuevo_id = len(self.lista_cuentas) + 1
 
         return nuevo_id
+
+    def mostrar_datos(self):
+        print("Nombre cliente: ", self.nombre, ",Usuario: ", self.usuario, ",Identificación: "
+              , self.identificacion)
+
+    def mostrar_cuenta(self):
+        for i in range(len(self.lista_cuentas)):
+            print("Numero de cuenta: ", i + 1)
+            print(self.lista_cuentas[i].mostrar_datos())
+        return len(self.lista_cuentas)

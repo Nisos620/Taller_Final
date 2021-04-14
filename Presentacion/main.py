@@ -85,9 +85,10 @@ def MenuGestionCliente():
     print("********MENU GESTION CLIENTE*********")
     print("*****************************")
     print("1. Crear Cliente")
-    print("2. Modificar Informacion")
-    print("3. Mostrar Informacion")
-    print("4. Atras")
+    print("2. Añadir cuenta a cliente")
+    print("3. Eliminar cuenta a cliente")
+    print("4. Mostrar Informacion cuenta")
+    print("5. Atras")
 
 
 def MenuGestionCasaInversora():
@@ -151,13 +152,18 @@ def MenuBanco():
 # SUB MENU GESTION CLIENTE
 def MenuCliente():
     varOpcion = 0
-    while (varOpcion != 4):
+    while varOpcion != 5:
 
-        if (varOpcion == 1):
-            print("funcion")
-            crearCasa()
+        if varOpcion == 1:
+            crearCliente()
+        if varOpcion == 2:
+            añadirCuentaCliente()
+        if varOpcion == 3:
+            eliminarCuenta()
+        if varOpcion == 4:
+            mostrarCuenta()
 
-        MenuGestionBanco()
+        MenuGestionCliente()
         try:
             varOpcion = int(input('Ingrese su opcion: '))
             if (varOpcion < 0 or varOpcion > 4):
@@ -419,3 +425,44 @@ while (varOpcionMenuPrincipal != 6):
     except:
         print("Debe ingresar un valor numerico")
         varOpcionMenuPrincipal = 0
+
+
+def crearCliente():
+    nombre = input('Ingrese nombre del cliente')
+    usuario = input('Ingrese nombre de usuario')
+    identificacion = input('Ingrese su identificacion')
+
+    for cliente in lista_cliente:
+        if usuario == cliente.getUsuario():
+            print('El usuario ya existe, intente con otro.')
+            return
+
+    lista_cliente.append(Cliente(nombre, usuario, identificacion))
+
+def añadirCuentaCliente():
+    usuario = input('Ingrese usuario para crear un cuenta')
+
+    for cliente in lista_cliente:
+        if usuario == cliente.getUsuario():
+            monto_inicial = int(input('Ingrese monto inicial de la cuenta:'))
+            minimo = int(input('Ingrese minimo:'))
+            porcentaje = int(input('Porcentaje:'))
+            saldo = int(input('Saldo de la cuenta:'))
+
+            cliente.añadir_cuenta(monto_inicial, minimo, porcentaje, saldo)
+            return
+
+def eliminarCuenta():
+    id_cuenta = int(input('Ingrese el id de la cuenta'))
+
+    for cliente in lista_cliente:
+        for cuenta in len(cliente.lista_cuentas):
+            if id_cuenta == cuenta.id:
+                cliente.eliminar_cuenta(id_cuenta)
+
+def mostrarCuenta():
+    usuario = input('Ingrese usuario para crear un cuenta')
+
+    for cliente in lista_cliente:
+        if usuario == cliente.getUsuario():
+            cliente.mostrar_cuenta()
