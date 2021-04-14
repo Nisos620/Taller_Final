@@ -127,7 +127,14 @@ def MenuBanco():
     while (varOpcion != 5):
 
         if (varOpcion == 1):
-            print("funcion aqui")
+            crearBanco()
+        if (varOpcion==2):
+            EliminarBanco()
+        if (varOpcion==3):
+            ModificarBanco()
+        if ( varOpcion==4):
+            mostrasBanco()
+
 
         MenuGestionBanco()
         try:
