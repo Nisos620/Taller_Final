@@ -2,6 +2,7 @@ class Banco:
     def __init__(self, sucursal, direccion):
         self.sucursal = sucursal
         self.direccion = direccion
+        self.lista_empleados=list()
 
     def getSucursal(self):
         return self.sucursal
@@ -14,3 +15,4 @@ class Banco:
 
     def setDireccion(self,direccion):
         self.direccion=direccion
+
