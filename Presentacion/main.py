@@ -129,6 +129,7 @@ def MenuBanco():
         if ( varOpcion==4):
             mostrasBanco()
 
+
         MenuGestionBanco()
         try:
             varOpcion = int(input('Ingrese su opcion: '))
